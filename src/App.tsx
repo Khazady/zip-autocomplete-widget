@@ -19,23 +19,28 @@ const App = () => {
     exit();
   };
 
+  const handleExit = () => {
+    if (isExited || isExiting) return;
+    exit();
+  };
+
   return (
     <>
       <div className={styles.scrollPage}>
         <p>{dictionary.app.scrollHint}</p>
       </div>
 
-      {shouldMountWidget && !isExited && (
-        <Suspense
-          fallback={
-            <div className={cn(styles.widgetFallback, widgetStyles.widgetPill, widgetStyles.widgetPosition)}>
-              {dictionary.app.fallbackLoading}
-            </div>
-          }
+      {shouldMountWidget && !isExited && (<Suspense
+          fallback={<div className={cn(styles.widgetFallback, widgetStyles.widgetPill, widgetStyles.widgetPosition)}>
+            {dictionary.app.fallbackLoading}
+          </div>}
         >
-          <FloatingZipWidget onSelect={handleSelect} isDismissing={isExiting} />
-        </Suspense>
-      )}
+          <FloatingZipWidget
+            onSelect={handleSelect}
+            onExit={handleExit}
+            isDismissing={isExiting}
+          />
+        </Suspense>)}
     </>
   );
 };

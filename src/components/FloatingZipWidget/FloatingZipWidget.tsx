@@ -8,17 +8,17 @@ import {cn} from "@/lib/utils/cn";
 import {useState} from "react";
 
 type FloatingZipWidgetProps = {
-  onSelect: (zip: string) => void;
-  isDismissing?: boolean;
+  onSelect: (zip: string) => void; isDismissing?: boolean; onExit: () => void;
 };
 
-export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetProps) => {
+export const FloatingZipWidget = ({onSelect, isDismissing, onExit}: FloatingZipWidgetProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
 
-  const { results, isLoading, error } = useZipSearch(isOpen, query);
+  const {results, isLoading, error} = useZipSearch(isOpen, query);
 
   const handleClose = () => {
+    onExit();
     setIsOpen(false);
     setQuery("");
   };
@@ -30,28 +30,19 @@ export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetP
 
   return (
     <div
-      className={cn(
-        styles.floatingWidget,
-        styles.widgetPosition,
-        isDismissing && styles.floatingWidgetDismissing
-      )}
+      className={cn(styles.floatingWidget, styles.widgetPosition, isDismissing && styles.floatingWidgetDismissing)}
     >
       <button
-        className={cn(
-          styles.widgetPill,
-          styles.widgetLauncher,
-          isOpen && styles.widgetLauncherHidden
-        )}
+        className={cn(styles.widgetPill, styles.widgetLauncher, isOpen && styles.widgetLauncherHidden)}
         onClick={() => setIsOpen(true)}
       >
         <span>{dictionary.widget.launcher}</span>
-        <CalendarIcon width={24} height={24} />
+        <CalendarIcon width={24} height={24}/>
       </button>
 
-      {isOpen && (
-        <div className={cn(styles.widgetPanel, styles.widgetPanelOpen)}>
+      {isOpen && (<div className={cn(styles.widgetPanel, styles.widgetPanelOpen)}>
           <button className={styles.widgetClose} onClick={handleClose}>
-            <CrossIcon width={16} height={16} />
+            <CrossIcon width={16} height={16}/>
           </button>
           <span className={styles.widgetHeader}>
             {dictionary.widget.header}
@@ -65,44 +56,31 @@ export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetP
                 value={query}
                 onChange={event => setQuery(event.target.value)}
               />
-              {showLoading && <Spinner className={styles.inputSpinner} />}
+              {showLoading && <Spinner className={styles.inputSpinner}/>}
 
               <div
-                className={cn(
-                  styles.widgetResults,
-                  hasQuery && styles.widgetResultsVisible
-                )}
+                className={cn(styles.widgetResults, hasQuery && styles.widgetResultsVisible)}
               >
-                {hasQuery && (
-                  <>
-                    {showEmpty && (
-                      <div className={styles.widgetEmpty}>
+                {hasQuery && (<>
+                    {showEmpty && (<div className={styles.widgetEmpty}>
                         <p>{dictionary.widget.empty}</p>
-                      </div>
-                    )}
+                      </div>)}
 
-                    {showError && (
-                      <div className={styles.widgetEmpty}>
+                    {showError && (<div className={styles.widgetEmpty}>
                         <p>{dictionary.widget.error}</p>
-                      </div>
-                    )}
+                      </div>)}
 
-                    {results.length > 0 && (
-                      <ul className={styles.widgetList}>
-                        {results.map((result) => (
-                          <li key={result.id} className={styles.widgetItem}>
+                    {results.length > 0 && (<ul className={styles.widgetList}>
+                        {results.map((result) => (<li key={result.id} className={styles.widgetItem}>
                             <button
                               onClick={() => onSelect(result.zip)}
                               className={styles.widgetItemButton}
                             >
                               <span>{result.label}</span>
                             </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                )}
+                          </li>))}
+                      </ul>)}
+                  </>)}
               </div>
             </div>
             <button className={styles.widgetButton}>
@@ -111,6 +89,5 @@ export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetP
           </div>
         </div>
       )}
-    </div>
-  );
+    </div>);
 };
