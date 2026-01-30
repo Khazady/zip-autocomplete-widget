@@ -1,5 +1,7 @@
+import widgetStyles from "@/components/FloatingZipWidget/FloatingZipWidget.module.css";
 import {dictionary} from "@/lib/dictionary";
 import {useScrollTrigger} from "@/lib/hooks/useScrollTrigger";
+import {cn} from "@/lib/utils/cn";
 import "@/styles/global.css";
 import styles from "@/styles/App.module.css";
 import {lazy, Suspense, useState} from "react";
@@ -24,7 +26,9 @@ const App = () => {
       {shouldMountWidget && !hasSelectedZip && (
         <Suspense
           fallback={
-            <div className={styles.widgetFallback}>{dictionary.app.fallbackLoading}</div>
+            <div className={cn(styles.widgetFallback, widgetStyles.widgetPill, widgetStyles.widgetPosition)}>
+              {dictionary.app.fallbackLoading}
+            </div>
           }
         >
           <FloatingZipWidget onSelect={handleSelect} />

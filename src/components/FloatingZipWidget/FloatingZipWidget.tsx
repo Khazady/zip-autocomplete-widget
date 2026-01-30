@@ -4,6 +4,7 @@ import styles from "@/components/FloatingZipWidget/FloatingZipWidget.module.css"
 import Spinner from "@/components/ui/Spinner";
 import {useZipSearch} from "@/lib/api/zip/useZipSearch";
 import {dictionary} from "@/lib/dictionary";
+import {cn} from "@/lib/utils/cn";
 import {useState} from "react";
 
 type FloatingZipWidgetProps = {
@@ -27,9 +28,12 @@ export const FloatingZipWidget = ({ onSelect }: FloatingZipWidgetProps) => {
   const showEmpty = hasQuery && !isLoading && !error && results.length === 0;
 
   return (
-    <div className={styles.floatingWidget}>
+    <div className={cn(styles.floatingWidget, styles.widgetPosition)}>
       {!isOpen && (
-        <button className={styles.widgetLauncher} onClick={() => setIsOpen(true)}>
+        <button
+          className={cn(styles.widgetPill, styles.widgetLauncher)}
+          onClick={() => setIsOpen(true)}
+        >
           <span>{dictionary.widget.launcher}</span>
           <CalendarIcon width={24} height={24} />
         </button>

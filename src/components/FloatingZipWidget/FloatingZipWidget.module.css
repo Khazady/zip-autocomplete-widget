@@ -1,8 +1,22 @@
 .floatingWidget {
   position: fixed;
-  right: clamp(18px, 4vw, 48px);
-  bottom: clamp(18px, 4vw, 48px);
   z-index: 2;
+}
+
+.widgetPosition {
+  position: fixed;
+  right: 10%; /* ~according Figma */
+  bottom: 9%; /* ~according Figma */
+}
+
+.widgetPill {
+  width: 262px;
+  padding: var(--spacing_24) var(--H-padding);
+  border: 2px solid var(--white);
+  border-radius: var(--spacing_16);
+  background: var(--lavender-50);
+  font: var(--launcher-font);
+  color: var(--blue-700);
 }
 
 .widgetLauncher {
@@ -10,15 +24,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--Spacing);
-  padding: var(--spacing_24) var(--H-padding);
-  border: 2px solid var(--white);
-  border-radius: var(--spacing_16);
-  background: var(--lavender-50);
-  color: var(--blue-700);
-  font: var(--launcher-font);
   cursor: pointer;
-  width: 262px;
-
 }
 
 .widgetPanel {
@@ -143,7 +149,6 @@
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    align-items: stretch;
     width: min(92vw, 420px);
   }
 
@@ -154,6 +159,14 @@
   .widgetInputRow {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .widgetInputWrapper {
+    width: 100%;
+  }
+
+  .widgetInput {
+    width: 100%;
   }
 
   .widgetButton {
