@@ -2,10 +2,10 @@ import CalendarIcon from "@/assets/Calendar.svg?react";
 import CrossIcon from "@/assets/Cross.svg?react";
 import styles from "@/components/FloatingZipWidget/FloatingZipWidget.module.css";
 import Spinner from "@/components/ui/Spinner";
-import { useZipSearch } from "@/lib/api/zip/useZipSearch";
-import { dictionary } from "@/lib/dictionary";
-import { cn } from "@/lib/utils/cn";
-import { useState } from "react";
+import {useZipSearch} from "@/lib/api/zip/useZipSearch";
+import {dictionary} from "@/lib/dictionary";
+import {cn} from "@/lib/utils/cn";
+import {useState} from "react";
 
 type FloatingZipWidgetProps = {
   onSelect: (zip: string) => void;
@@ -33,6 +33,7 @@ export const FloatingZipWidget = ({
   const showLoading = hasQuery && isLoading;
   const showError = hasQuery && Boolean(error);
   const showEmpty = hasQuery && !isLoading && !error && results.length === 0;
+  const hasResultsContent = showEmpty || showError || results.length > 0;
 
   return (
     <div
@@ -76,10 +77,10 @@ export const FloatingZipWidget = ({
               <div
                 className={cn(
                   styles.widgetResults,
-                  hasQuery && styles.widgetResultsVisible,
+                  hasResultsContent && styles.widgetResultsVisible,
                 )}
               >
-                {hasQuery && (
+                {hasResultsContent && (
                   <>
                     {showEmpty && (
                       <div className={styles.widgetEmpty}>
