@@ -1,7 +1,6 @@
 export const dictionary = {
   app: {
     scrollHint: "Scroll down",
-    fallbackLoading: "Loading availability...",
   },
   widget: {
     launcher: "Check availabilities",

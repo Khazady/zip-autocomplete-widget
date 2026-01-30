@@ -7,30 +7,3 @@
   font-size: 32px;
   background-color: var(--grey-20);
 }
-
-.widgetFallback {
-  text-align: center;
-  user-select: none;
-  animation: fallback-in 160ms ease;
-}
-
-@media (max-width: 768px) {
-  .widgetFallback {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: 80dvw;
-    bottom: 4dvh;
-  }
-}
-
-@keyframes fallback-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}

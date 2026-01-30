@@ -1,8 +1,6 @@
-import widgetStyles from "@/components/FloatingZipWidget/FloatingZipWidget.module.css";
 import { dictionary } from "@/lib/dictionary";
 import { useExitAnimation } from "@/lib/hooks/useExitAnimation";
 import { useScrollTrigger } from "@/lib/hooks/useScrollTrigger";
-import { cn } from "@/lib/utils/cn";
 import "@/styles/global.css";
 import styles from "@/styles/App.module.css";
 import { lazy, Suspense } from "react";
@@ -31,19 +29,7 @@ const App = () => {
       </div>
 
       {shouldMountWidget && !isExited && (
-        <Suspense
-          fallback={
-            <div
-              className={cn(
-                styles.widgetFallback,
-                widgetStyles.widgetPill,
-                widgetStyles.widgetPosition,
-              )}
-            >
-              {dictionary.app.fallbackLoading}
-            </div>
-          }
-        >
+        <Suspense fallback={null}>
           <FloatingZipWidget
             onSelect={handleSelect}
             onExit={handleExit}
