@@ -1,0 +1,167 @@
+.floatingWidget {
+  position: fixed;
+  right: clamp(18px, 4vw, 48px);
+  bottom: clamp(18px, 4vw, 48px);
+  z-index: 2;
+}
+
+.widgetLauncher {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing);
+  padding: var(--spacing_24) var(--H-padding);
+  border: 2px solid var(--white);
+  border-radius: var(--spacing_16);
+  background: var(--lavender-50);
+  color: var(--blue-700);
+  font: var(--launcher-font);
+  cursor: pointer;
+  width: 262px;
+
+}
+
+.widgetPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing_12);
+  background: var(--lavender-50);
+  border: 2px solid var(--white);
+  border-radius: var(--spacing_16);
+  padding: var(--spacing_24) var(--H-padding);
+  position: relative;
+}
+
+.widgetClose {
+  position: absolute;
+  top: var(--spacing_24);
+  right: var(--H-padding);
+  cursor: pointer;
+  color: var(--blue-700);
+  height: 16px;
+  width: 16px;
+}
+
+.widgetHeader {
+  color: var(--grey-700);
+  font: var(--subtitle-font);
+  white-space: pre-wrap;
+}
+
+.widgetInputRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing_12);
+}
+
+.widgetInputWrapper {
+  position: relative;
+}
+
+.widgetInput {
+  background: var(--white);
+  height: 56px;
+  width: 311px;
+  border-radius: 8px; /* no token in Figma */
+  padding: var(--V-padding);
+  border: 1px solid var(--grey-200);
+  font: var(--input-font);
+  color: var(--grey-800);
+  outline: none;
+}
+
+.widgetInput:hover {
+  border-color: var(--grey-700);
+}
+
+.inputSpinner {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  margin-top: -8px;
+}
+
+.widgetInput::placeholder {
+  color: var(--grey-800);
+}
+
+.widgetButton {
+  width: 152px;
+  background: var(--blue-500);
+  color: var(--grey-20);
+  padding: var(--V-padding) var(--H-padding);
+  border-radius: var(--Radius);
+  font: var(--button-font);
+  cursor: pointer;
+}
+
+.widgetResults {
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(100% + 4px);
+  background: var(--white);
+  border-radius: var(--Radius);
+  padding: var(--V-padding) 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.widgetResults:empty {
+  display: none
+}
+
+.widgetList {
+  list-style: none;
+  padding:  0 var(--H-padding);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing_24);
+}
+
+.widgetItemButton {
+  width: 100%;
+  color: var(--grey-800);
+  border-radius: var(--Radius);
+  font: var(--input-font);
+  cursor: pointer;
+  text-align: start;
+}
+
+.widgetItemButton:hover {
+  color: var(--blue-500);
+}
+
+.widgetEmpty {
+  padding:  0 var(--H-padding);
+  font: var(--input-font);
+  color: var(--grey-700);
+}
+
+@media (max-width: 640px) {
+  .floatingWidget {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    align-items: stretch;
+    width: min(92vw, 420px);
+  }
+
+  .widgetPanel {
+    width: 100%;
+  }
+
+  .widgetInputRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .widgetButton {
+    width: 100%;
+  }
+
+  .widgetLauncher {
+    width: 100%;
+    justify-content: center;
+  }
+}

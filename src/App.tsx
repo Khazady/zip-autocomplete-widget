@@ -2,8 +2,9 @@ import {dictionary} from "@/lib/dictionary";
 import {useScrollTrigger} from "@/lib/hooks/useScrollTrigger";
 import "@/styles/global.css";
 import styles from "@/styles/App.module.css";
-import {Suspense, useState} from "react";
+import {lazy, Suspense, useState} from "react";
 
+const FloatingZipWidget = lazy(() => import("@/components/FloatingZipWidget"));
 
 const App = () => {
   const shouldMountWidget = useScrollTrigger(0.9);
@@ -26,7 +27,7 @@ const App = () => {
             <div className={styles.widgetFallback}>{dictionary.app.fallbackLoading}</div>
           }
         >
-          <div>widget placeholder</div>
+          <FloatingZipWidget onSelect={handleSelect} />
         </Suspense>
       )}
     </>
