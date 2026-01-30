@@ -1,9 +1,9 @@
-import { dictionary } from "@/lib/dictionary";
-import { useExitAnimation } from "@/lib/hooks/useExitAnimation";
-import { useScrollTrigger } from "@/lib/hooks/useScrollTrigger";
+import {dictionary} from "@/lib/dictionary";
+import {useExitAnimation} from "@/lib/hooks/useExitAnimation";
+import {useScrollTrigger} from "@/lib/hooks/useScrollTrigger";
 import "@/styles/global.css";
 import styles from "@/styles/App.module.css";
-import { lazy, Suspense } from "react";
+import {lazy, Suspense} from "react";
 
 const FloatingZipWidget = lazy(() => import("@/components/FloatingZipWidget"));
 
@@ -17,11 +17,6 @@ const App = () => {
     exit();
   };
 
-  const handleExit = () => {
-    if (isExited || isExiting) return;
-    exit();
-  };
-
   return (
     <>
       <div className={styles.scrollPage}>
@@ -32,7 +27,6 @@ const App = () => {
         <Suspense fallback={null}>
           <FloatingZipWidget
             onSelect={handleSelect}
-            onExit={handleExit}
             isDismissing={isExiting}
           />
         </Suspense>
