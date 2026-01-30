@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export const useScrollTrigger = (triggerRatio: number): boolean => {
   const [isTriggered, setIsTriggered] = useState(false);

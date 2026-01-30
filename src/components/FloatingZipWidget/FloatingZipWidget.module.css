@@ -135,7 +135,10 @@
   opacity: 0;
   transform: translateY(6px);
   pointer-events: none;
-  transition: opacity 160ms ease, transform 160ms ease, max-height 160ms ease;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    max-height 160ms ease;
 }
 
 .widgetResultsVisible {
@@ -162,7 +165,7 @@
 
 .widgetList {
   list-style: none;
-  padding:  0 var(--H-padding);
+  padding: 0 var(--H-padding);
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -183,7 +186,7 @@
 }
 
 .widgetEmpty {
-  padding:  0 var(--H-padding);
+  padding: 0 var(--H-padding);
   font: var(--input-font);
   color: var(--grey-700);
 }
