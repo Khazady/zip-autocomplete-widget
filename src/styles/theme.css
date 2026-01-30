@@ -1,0 +1,28 @@
+:root {
+  /* Typography */
+  --font-body: "Open Sans", Arial, sans-serif;
+  --input-font: 400 16px/24px "Open Sans", Arial, sans-serif;
+  --subtitle-font: 400 18px/26px "Open Sans", Arial, sans-serif;
+  --button-font: 600 18px/24px "Open Sans", Arial, sans-serif;
+  --launcher-font: 600 18px/24px "Open Sans", Arial, sans-serif;
+
+  /* Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --blue-500: #4902f9;
+  --blue-700: #3101a6;
+  --lavender-50: #dde7ff;
+  --grey-20: #f8f7fa;
+  --grey-200: #b7b6ba;
+  --grey-700: #3a393d;
+  --grey-800: #1c1b1d;
+
+  /* Spacing */
+  --Spacing: 8px;
+  --Radius: 4px;
+  --spacing_12: 12px;
+  --spacing_16: 16px;
+  --spacing_24: 24px;
+  --H-padding: 24px;
+  --V-padding: 16px;
+}
