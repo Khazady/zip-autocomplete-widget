@@ -3,6 +3,11 @@
   z-index: 2;
 }
 
+.floatingWidgetDismissing {
+  animation: widget-out 180ms ease forwards;
+  pointer-events: none;
+}
+
 .widgetPosition {
   position: fixed;
   right: 10%; /* ~according Figma */
@@ -122,6 +127,12 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+@keyframes widget-out {
+  to {
+    opacity: 0;
+  }
 }
 
 .widgetList {

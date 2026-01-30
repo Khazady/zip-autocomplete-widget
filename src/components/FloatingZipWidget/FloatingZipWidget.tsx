@@ -9,9 +9,10 @@ import {useState} from "react";
 
 type FloatingZipWidgetProps = {
   onSelect: (zip: string) => void;
+  isDismissing?: boolean;
 };
 
-export const FloatingZipWidget = ({ onSelect }: FloatingZipWidgetProps) => {
+export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -28,7 +29,13 @@ export const FloatingZipWidget = ({ onSelect }: FloatingZipWidgetProps) => {
   const showEmpty = hasQuery && !isLoading && !error && results.length === 0;
 
   return (
-    <div className={cn(styles.floatingWidget, styles.widgetPosition)}>
+    <div
+      className={cn(
+        styles.floatingWidget,
+        styles.widgetPosition,
+        isDismissing && styles.floatingWidgetDismissing
+      )}
+    >
       {!isOpen && (
         <button
           className={cn(styles.widgetPill, styles.widgetLauncher)}

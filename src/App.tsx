@@ -1,20 +1,22 @@
 import widgetStyles from "@/components/FloatingZipWidget/FloatingZipWidget.module.css";
 import {dictionary} from "@/lib/dictionary";
+import {useExitAnimation} from "@/lib/hooks/useExitAnimation";
 import {useScrollTrigger} from "@/lib/hooks/useScrollTrigger";
 import {cn} from "@/lib/utils/cn";
 import "@/styles/global.css";
 import styles from "@/styles/App.module.css";
-import {lazy, Suspense, useState} from "react";
+import {lazy, Suspense} from "react";
 
 const FloatingZipWidget = lazy(() => import("@/components/FloatingZipWidget"));
 
 const App = () => {
   const shouldMountWidget = useScrollTrigger(0.9);
-  const [hasSelectedZip, setHasSelectedZip] = useState(false);
+  const {isExited, isExiting, exit} = useExitAnimation(180);
 
   const handleSelect = (zip: string) => {
+    if (isExited || isExiting) return;
     console.log(zip);
-    setHasSelectedZip(true);
+    exit();
   };
 
   return (
@@ -23,7 +25,7 @@ const App = () => {
         <p>{dictionary.app.scrollHint}</p>
       </div>
 
-      {shouldMountWidget && !hasSelectedZip && (
+      {shouldMountWidget && !isExited && (
         <Suspense
           fallback={
             <div className={cn(styles.widgetFallback, widgetStyles.widgetPill, widgetStyles.widgetPosition)}>
@@ -31,7 +33,7 @@ const App = () => {
             </div>
           }
         >
-          <FloatingZipWidget onSelect={handleSelect} />
+          <FloatingZipWidget onSelect={handleSelect} isDismissing={isExiting} />
         </Suspense>
       )}
     </>
