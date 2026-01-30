@@ -14,50 +14,63 @@
   bottom: 9%; /* ~according Figma */
 }
 
-.widgetPill {
+.widgetShell {
+  position: relative;
   width: 262px;
+}
+
+.widgetLauncher {
+  font: var(--launcher-font);
+  position: absolute;
+  right: 0;
+  bottom: 0;
   padding: var(--spacing_24) var(--H-padding);
   border: 2px solid var(--white);
   border-radius: var(--spacing_16);
   background: var(--lavender-50);
-  font: var(--launcher-font);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  transform-origin: right bottom;
+  transform: scale(1);
+  animation: launcher-in 150ms ease-in-out;
+  width: 100%;
   color: var(--blue-700);
-}
-
-.widgetLauncher {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--Spacing);
   cursor: pointer;
-  animation: panel-in 180ms ease;
-  transition: opacity 160ms ease;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  z-index: 2;
 }
 
 .widgetLauncherHidden {
   opacity: 0;
   pointer-events: none;
+  transform: scale(0.9);
 }
 
 .widgetPanel {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing_12);
-  background: var(--lavender-50);
-  border: 2px solid var(--white);
-  border-radius: var(--spacing_16);
-  padding: var(--spacing_24) var(--H-padding);
   position: absolute;
   right: 0;
   bottom: 0;
+  padding: var(--spacing_24) var(--H-padding);
+  border: 2px solid var(--white);
+  border-radius: var(--spacing_16);
+  background: var(--lavender-50);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  transform-origin: right bottom;
+  transform: scale(0.4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing_12);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .widgetPanelOpen {
-  transform-origin: bottom right;
-  animation: panel-in 180ms ease;
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
 .widgetClose {
@@ -155,12 +168,14 @@
   }
 }
 
-@keyframes panel-in {
+@keyframes launcher-in {
   from {
     opacity: 0;
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -197,12 +212,11 @@
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: 80dvw;
     bottom: 4dvh;
   }
 
-  .widgetPanel {
-    width: 100%;
+  .widgetShell {
+    width: 80dvw;
   }
 
   .widgetHeader {
@@ -224,8 +238,12 @@
   }
 
   .widgetLauncher {
-    width: 100%;
     justify-content: center;
+  }
+
+  .widgetPanel {
+    max-width: 80dvw;
+    width: 80dvw;
   }
 
   .widgetResults {
