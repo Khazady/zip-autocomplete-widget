@@ -18,6 +18,7 @@ export const FloatingZipWidget = ({
 }: FloatingZipWidgetProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [showEmptyError, setShowEmptyError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { results, isLoading, error } = useZipSearch(isOpen, query);
@@ -25,6 +26,15 @@ export const FloatingZipWidget = ({
   const handleClose = () => {
     setIsOpen(false);
     setQuery("");
+    setShowEmptyError(false);
+  };
+
+  const handleSubmit = () => {
+    if (!query.trim()) {
+      setShowEmptyError(true);
+      return;
+    }
+    setShowEmptyError(false);
   };
 
   const hasQuery = query.trim().length > 0;
@@ -70,9 +80,22 @@ export const FloatingZipWidget = ({
                 className={styles.widgetInput}
                 placeholder={dictionary.widget.placeholder}
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  if (showEmptyError) {
+                    setShowEmptyError(false);
+                  }
+                }}
               />
               {showLoading && <Spinner className={styles.inputSpinner} />}
+              <p
+                className={cn(
+                  styles.widgetError,
+                  showEmptyError && styles.widgetErrorVisible,
+                )}
+              >
+                {dictionary.widget.emptyFieldError}
+              </p>
 
               <div
                 className={cn(
@@ -112,7 +135,7 @@ export const FloatingZipWidget = ({
                 )}
               </div>
             </div>
-            <button className={styles.widgetButton}>
+            <button className={styles.widgetButton} onClick={handleSubmit}>
               {dictionary.widget.buttonLabel}
             </button>
           </div>
