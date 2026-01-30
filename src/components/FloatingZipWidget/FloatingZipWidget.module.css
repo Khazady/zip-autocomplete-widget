@@ -30,6 +30,7 @@
   justify-content: center;
   gap: var(--Spacing);
   cursor: pointer;
+  animation: panel-in 180ms ease;
   transition: opacity 160ms ease;
   position: absolute;
   right: 0;
@@ -202,6 +203,11 @@
 
   .widgetPanel {
     width: 100%;
+  }
+
+  .widgetHeader {
+    white-space: normal;
+    font: var(--input-font);
   }
 
   .widgetInputRow {
