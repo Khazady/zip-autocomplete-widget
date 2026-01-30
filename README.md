@@ -5,7 +5,8 @@
 Zip Autocomplete Widget is a recruitment-task implementation of a floating button that expands into a
 zip/city autocomplete widget. The widget appears after the user scrolls past 90% of the viewport height,
 is lazy-loaded on demand, fetches mocked data from `public/`, and logs the selected zip code to the console
-before disappearing permanently. Closing via the cross icon also dismisses the widget.
+before disappearing permanently. Closing via the cross icon returns the launcher (does not dismiss the widget).
+While lazy-loading, no fallback UI is rendered until the widget code is ready.
 
 ## Node and npm versions
 
