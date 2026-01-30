@@ -58,36 +58,43 @@ export const FloatingZipWidget = ({ onSelect }: FloatingZipWidgetProps) => {
               />
               {showLoading && <Spinner className={styles.inputSpinner} />}
 
-              {hasQuery && (
-                <div className={styles.widgetResults}>
-                  {showEmpty && (
-                    <div className={styles.widgetEmpty}>
-                      <p>{dictionary.widget.empty}</p>
-                    </div>
-                  )}
+              <div
+                className={cn(
+                  styles.widgetResults,
+                  hasQuery && styles.widgetResultsVisible
+                )}
+              >
+                {hasQuery && (
+                  <>
+                    {showEmpty && (
+                      <div className={styles.widgetEmpty}>
+                        <p>{dictionary.widget.empty}</p>
+                      </div>
+                    )}
 
-                  {showError && (
-                    <div className={styles.widgetEmpty}>
-                      <p>{dictionary.widget.error}</p>
-                    </div>
-                  )}
+                    {showError && (
+                      <div className={styles.widgetEmpty}>
+                        <p>{dictionary.widget.error}</p>
+                      </div>
+                    )}
 
-                  {results.length > 0 && (
-                    <ul className={styles.widgetList}>
-                      {results.map((result) => (
-                        <li key={result.id} className={styles.widgetItem}>
-                          <button
-                            onClick={() => onSelect(result.zip)}
-                            className={styles.widgetItemButton}
-                          >
-                            <span>{result.label}</span>
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
+                    {results.length > 0 && (
+                      <ul className={styles.widgetList}>
+                        {results.map((result) => (
+                          <li key={result.id} className={styles.widgetItem}>
+                            <button
+                              onClick={() => onSelect(result.zip)}
+                              className={styles.widgetItemButton}
+                            >
+                              <span>{result.label}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
             <button className={styles.widgetButton}>
               {dictionary.widget.buttonLabel}

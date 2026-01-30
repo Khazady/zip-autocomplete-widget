@@ -74,6 +74,7 @@
   font: var(--input-font);
   color: var(--grey-800);
   outline: none;
+  transition: border-color 160ms ease;
 }
 
 .widgetInput:hover {
@@ -108,12 +109,19 @@
   background: var(--white);
   border-radius: var(--Radius);
   padding: var(--V-padding) 0;
-  max-height: 400px;
+  max-height: 0;
   overflow-y: auto;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease, max-height 160ms ease;
 }
 
-.widgetResults:empty {
-  display: none
+.widgetResultsVisible {
+  max-height: 400px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .widgetList {
@@ -176,7 +184,11 @@
   }
 
   .widgetResults {
-    max-height: 75dvh;
+    max-height: 0;
+  }
+
+  .widgetResultsVisible {
+    max-height: min(30dvh, 240px);
   }
 
   .widgetItemButton {
