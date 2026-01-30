@@ -144,12 +144,13 @@
   color: var(--grey-700);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .floatingWidget {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: min(92vw, 420px);
+    width: 80dvw;
+    bottom: 4dvh;
   }
 
   .widgetPanel {
@@ -159,10 +160,6 @@
   .widgetInputRow {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .widgetInputWrapper {
-    width: 100%;
   }
 
   .widgetInput {
@@ -176,5 +173,13 @@
   .widgetLauncher {
     width: 100%;
     justify-content: center;
+  }
+
+  .widgetResults {
+    max-height: 75dvh;
+  }
+
+  .widgetItemButton {
+    padding: var(--Spacing) 0;
   }
 }

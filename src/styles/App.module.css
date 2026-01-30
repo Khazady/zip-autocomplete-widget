@@ -12,3 +12,13 @@
   text-align: center;
   user-select: none;
 }
+
+@media (max-width: 768px) {
+  .widgetFallback {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 80dvw;
+    bottom: 4dvh;
+  }
+}
