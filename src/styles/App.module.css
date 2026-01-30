@@ -1,0 +1,23 @@
+.scrollPage {
+  height: 220dvh;
+  display: block;
+  padding: var(--H-padding);
+  color: var(--grey-700);
+  font: var(--launcher-font);
+  font-size: 32px;
+}
+
+.widgetFallback {
+  width: 262px;
+  position: fixed;
+  right: clamp(18px, 4vw, 48px);
+  bottom: clamp(18px, 4vw, 48px);
+  background: var(--lavender-50);
+  font: var(--launcher-font);
+  color: var(--blue-700);
+  padding: var(--spacing_24) var(--H-padding);
+  border: 2px solid var(--white);
+  border-radius: var(--spacing_16);
+  text-align: center;
+  user-select: none;
+}
