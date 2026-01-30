@@ -36,18 +36,20 @@ export const FloatingZipWidget = ({ onSelect, isDismissing }: FloatingZipWidgetP
         isDismissing && styles.floatingWidgetDismissing
       )}
     >
-      {!isOpen && (
-        <button
-          className={cn(styles.widgetPill, styles.widgetLauncher)}
-          onClick={() => setIsOpen(true)}
-        >
-          <span>{dictionary.widget.launcher}</span>
-          <CalendarIcon width={24} height={24} />
-        </button>
-      )}
+      <button
+        className={cn(
+          styles.widgetPill,
+          styles.widgetLauncher,
+          isOpen && styles.widgetLauncherHidden
+        )}
+        onClick={() => setIsOpen(true)}
+      >
+        <span>{dictionary.widget.launcher}</span>
+        <CalendarIcon width={24} height={24} />
+      </button>
 
       {isOpen && (
-        <div className={styles.widgetPanel}>
+        <div className={cn(styles.widgetPanel, styles.widgetPanelOpen)}>
           <button className={styles.widgetClose} onClick={handleClose}>
             <CrossIcon width={16} height={16} />
           </button>
