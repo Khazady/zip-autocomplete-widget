@@ -5,6 +5,7 @@ import Spinner from "@/components/ui/Spinner";
 import {useZipSearch} from "@/lib/api/zip/useZipSearch";
 import {dictionary} from "@/lib/dictionary";
 import {cn} from "@/lib/utils/cn";
+import {useClickOutside} from "@/lib/hooks/useClickOutside";
 import {useEffect, useRef, useState} from "react";
 
 type FloatingZipWidgetProps = {
@@ -20,6 +21,7 @@ export const FloatingZipWidget = ({
   const [query, setQuery] = useState("");
   const [showEmptyError, setShowEmptyError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
 
   const { results, isLoading, error } = useZipSearch(isOpen, query);
 
@@ -48,6 +50,8 @@ export const FloatingZipWidget = ({
     inputRef.current?.focus();
   }, [isOpen]);
 
+  useClickOutside(shellRef, handleClose, isOpen);
+
   return (
     <div
       className={cn(
@@ -56,7 +60,7 @@ export const FloatingZipWidget = ({
         isDismissing && styles.floatingWidgetDismissing,
       )}
     >
-      <div className={styles.widgetShell}>
+      <div className={styles.widgetShell} ref={shellRef}>
         <button
           className={cn(
             styles.widgetLauncher,
