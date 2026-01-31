@@ -5,8 +5,9 @@ import Spinner from "@/components/ui/Spinner";
 import {useZipSearch} from "@/lib/api/zip/useZipSearch";
 import {dictionary} from "@/lib/dictionary";
 import {cn} from "@/lib/utils/cn";
+import {useAutoFocus} from "@/lib/hooks/useAutoFocus";
 import {useClickOutside} from "@/lib/hooks/useClickOutside";
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 
 type FloatingZipWidgetProps = {
   onSelect: (zip: string) => void;
@@ -45,10 +46,7 @@ export const FloatingZipWidget = ({
   const showEmpty = hasQuery && !isLoading && !error && results.length === 0;
   const hasResultsContent = showEmpty || showError || results.length > 0;
 
-  useEffect(() => {
-    if (!isOpen) return;
-    inputRef.current?.focus();
-  }, [isOpen]);
+  useAutoFocus(inputRef, isOpen);
 
   useClickOutside(shellRef, handleClose, isOpen);
 
